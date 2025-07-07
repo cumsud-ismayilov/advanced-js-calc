@@ -1,8 +1,17 @@
 const display = document.querySelector("#display")
 const btn = document.querySelector("button")
+const clearBtn = document.querySelector("#clear")
+
+
+clearBtn.addEventListener("click",()=>{
+    display.value = ""
+})
+
 
 function appendValue(val) {
-  display.value += val;
+  btn.addEventListener("click",()=>{
+     display.value += val;
+  })
 }
 
 
@@ -11,15 +20,14 @@ function calculate() {
  
   try {
     display.value = eval(display.value);
+    
   } catch {
     display.value = "Xəta!";
   }
 }
 
 
-function clearDisplay() {
-  display.value = ""
-}
+
 
 
 
