@@ -1,20 +1,26 @@
 const display = document.querySelector("#display")
-const btn = document.querySelector("button")
+const btn = document.querySelectorAll(".buttons button")
 const clearBtn = document.querySelector("#clear")
-
+const powerBtn = document.querySelector("#power")
 
 clearBtn.addEventListener("click",()=>{
     display.value = ""
 })
-
-
-function appendValue(val) {
-  btn.addEventListener("click",()=>{
-     display.value += val;
-  })
-}
-
-
+btn.forEach(buttons =>{
+buttons.addEventListener("click",()=>{
+    const value = buttons.textContent;
+    if (value === "C") {
+      display.value = "";
+    } else if (value === "=") {
+      calculate();
+    } else if (value === "xʸ") {
+      display.value += "**";  // JavaScript-də güc alma üçün ** istifadə olunur
+    }
+    else {
+      display.value += value;
+    }
+})
+})
 
 function calculate() {
  
@@ -25,6 +31,8 @@ function calculate() {
     display.value = "Xəta!";
   }
 }
+
+
 
 
 
@@ -50,14 +58,12 @@ function calculateSqrt() {
 }
 
 
-
-
 function toRadians(degrees) {
   return degrees * (Math.PI / 180);
 }
 
 function calculateTrig(funcName) {
-  const display = document.getElementById("display");
+ 
   const degreeValue = parseFloat(display.value);
 
   if (isNaN(degreeValue)) {
