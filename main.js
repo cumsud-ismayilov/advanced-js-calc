@@ -14,7 +14,7 @@ btn.forEach((buttons) => {
     } else if (value === "=") {
       calculate();
     } else if (value === "xʸ") {
-      display.value += "**"; // JavaScript-də güc alma üçün ** istifadə olunur
+      display.value += "**";
     } else if (value === "√") {
      display.value += "√(";
     } else {
