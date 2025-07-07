@@ -16,62 +16,51 @@ btn.forEach((buttons) => {
     } else if (value === "xʸ") {
       display.value += "**";
     } else if (value === "√") {
-     display.value += "√(";
+      display.value += "√(";
+    } else if (value === "π") {
+      display.value += "π";
+    } else if (value === "eˣ") {
+      display.value += "e^(";
+    } else if (value === "log") {
+      display.value += "log(";
+    } else if (value === "ln") {
+      display.value += "ln(";
+    } else if (value === "sin") {
+      display.value += "sin(";
+    } else if (value === "cos") {
+      display.value += "cos(";
+    } else if (value === "tan") {
+      display.value += "tan(";
     } else {
       display.value += value;
     }
   });
 });
 
-
 function calculate() {
   try {
-    let expression = display.value;
-
-    
-    expression = expression.replace(/√\(/g, 'Math.sqrt(');
-
-    
-    if (expression.includes('Math.sqrt(') && !expression.includes(')')) {
-      display.value = "Səhv dəyər!";
-      return;
-    }
-
-    
+    let expression = display.value
+      .replace(/√\(/g, "Math.sqrt(")
+      .replace(/π/g, "Math.PI")
+      .replace(/e\^\(/g, "Math.exp(")
+      .replace(/log\(/g, "Math.log10(")
+      .replace(/ln\(/g, "Math.log(");
     display.value = eval(expression);
   } catch {
     display.value = "Xəta!";
   }
 }
 
-function toRadians(degrees) {
-  return degrees * (Math.PI / 180);
+window.toRad = function (x) {
+  return (x * Math.PI) / 180;
+};
+
+function sin(x) {
+  return Math.sin(toRad(x));
 }
-
-function calculateTrig(funcName) {
-  const degreeValue = parseFloat(display.value);
-
-  if (isNaN(degreeValue)) {
-    display.value = "Xəta!";
-    return;
-  }
-
-  const radians = toRadians(degreeValue);
-  let result;
-
-  switch (funcName) {
-    case "sin":
-      result = Math.sin(radians);
-      break;
-    case "cos":
-      result = Math.cos(radians);
-      break;
-    case "tan":
-      result = Math.tan(radians);
-      break;
-    default:
-      result = "Xəta!";
-  }
-
-  display.value = result.toFixed(4);
+function cos(x) {
+  return Math.cos(toRad(x));
+}
+function tan(x) {
+  return Math.tan(toRad(x));
 }
