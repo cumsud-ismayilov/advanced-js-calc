@@ -76,3 +76,7 @@ function calculateTrig(funcName) {
 
   display.value = result.toFixed(4); 
 }
+
+
+
+
